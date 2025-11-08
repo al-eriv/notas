@@ -1,0 +1,21 @@
+<h1>Registrar notas</h1>
+<form method = "post">
+    {%csrf_token%}
+<label>Evaluación:</label>
+<select name="evaluacion">
+{% for e in evaluaciones %}
+<option value="{{e.id}}">{{e.nombre}}</option>
+{% endfor %}
+</select>
+
+<label>Matrícula:</label>
+<select name="matricula">
+    {% for m in matriculas %}
+    <option value="{{ m.id }}">{{m}}</option>
+    {% endfor %}
+</select>
+<label>Puntaje:</label>
+<input type="number" name="puntaje"/>
+<button type="submit">Guardar</button>
+
+</form>

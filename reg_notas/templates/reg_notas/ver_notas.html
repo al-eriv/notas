@@ -1,0 +1,30 @@
+<h1>Consultar Notas</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="matricula">Selecciona estudiante:</label>
+    <select name="matricula" id="matricula">
+        {% for m in matriculas %}
+            <option value="{{ m.id }}">{{ m.estudiante.nombre }} {{ m.estudiante.appaterno }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Ver notas</button>
+</form>
+
+{% if notas %}
+    <h2>Notas</h2>
+    <table border="1">
+        <tr>
+            <th>Asignatura</th>
+            <th>Evaluación</th>
+            <th>Puntaje</th>
+        </tr>
+        {% for n in notas %}
+            <tr>
+                <td>{{ n.evaluacion.asignatura.nombre }}</td>
+                <td>{{ n.evaluacion.nombre }}</td>
+                <td>{{ n.puntaje }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
